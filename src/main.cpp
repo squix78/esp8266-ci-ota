@@ -10,6 +10,7 @@
 #include <ESP8266HTTPClient.h>
 #include <ESP8266httpUpdate.h>
 
+String firmwareVersion = "0.0.5";
 
 void setup() {
 
@@ -47,10 +48,10 @@ void loop() {
     // press nodemcu's flash button
     int result0 = digitalRead(0);
     if (result0 == LOW) {
+      Serial.println("Current firmware: " + firmwareVersion);
       Serial.println("Going to update firmware...");
       delay(2000);
-      ESPhttpUpdate.rebootOnUpdate(true);
-      ESPhttpUpdate.update("github.com", 80, "/squix78/esp8266-ci-ota/releases/download/0.0.2/firmware.bin");
+      ESPhttpUpdate.update("github.com", 80, "/squix78/esp8266-ci-ota/releases/download/0.0.5/firmware.bin");
       Serial.println("Updated firmware....");
     }
 

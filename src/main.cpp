@@ -10,7 +10,7 @@
 #include <ESP8266HTTPClient.h>
 #include <ESP8266httpUpdate.h>
 
-String firmwareVersion = "0.0.5";
+String firmwareVersion = "0.0.6";
 
 void setup() {
 
@@ -50,7 +50,6 @@ void loop() {
     if (result0 == LOW) {
       Serial.println("Current firmware: " + firmwareVersion);
       Serial.println("Going to update firmware...");
-      delay(2000);
       ESPhttpUpdate.update("github.com", 80, "/squix78/esp8266-ci-ota/releases/download/0.0.5/firmware.bin");
       Serial.println("Updated firmware....");
     }

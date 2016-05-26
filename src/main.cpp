@@ -53,6 +53,5 @@ void loop() {
       ESPhttpUpdate.update("github.com", 80, "/squix78/esp8266-ci-ota/releases/download/0.0.2/firmware.bin");
       Serial.println("Updated firmware....");
     }
-    //ESPhttpUpdate.update("github.com", 80, "/squix78/esp8266-ci-ota/releases/download/0.0.1/firmware.elf");
 
 }

@@ -15,6 +15,9 @@ script:
 - platformio ci --build-dir="/tmp/build" --keep-build-dir --board=nodemcuv2
 
 deploy:
+  on:
+    tags: true
+    all_branches: true
   skip_cleanup: true
   provider: releases
   overwrite: true

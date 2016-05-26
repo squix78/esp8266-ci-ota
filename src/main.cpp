@@ -5,10 +5,17 @@
 #include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
 
 
+#include <ESP8266WiFiMulti.h>
+
+#include <ESP8266HTTPClient.h>
+#include <ESP8266httpUpdate.h>
+
+
 void setup() {
+
     // put your setup code here, to run once:
     Serial.begin(115200);
-
+    Serial.println("Now starting...");
     //WiFiManager
     //Local intialization. Once its business is done, there is no need to keep it around
     WiFiManager wifiManager;
@@ -29,9 +36,23 @@ void setup() {
 
     //if you get here you have connected to the WiFi
     Serial.println("connected...yeey :)");
+    Serial.println("Now downloading artefact...");
+
+    Serial.println("Downloaded new version....");
+    pinMode(0, INPUT);
+    pinMode(2, INPUT);
 }
 
 void loop() {
-    // put your main code here, to run repeatedly:
+    // press nodemcu's flash button
+    int result0 = digitalRead(0);
+    if (result0 == LOW) {
+      Serial.println("Going to update firmware...");
+      delay(2000);
+      ESPhttpUpdate.rebootOnUpdate(true);
+      ESPhttpUpdate.update("github.com", 80, "/squix78/esp8266-ci-ota/releases/download/0.0.2/firmware.bin");
+      Serial.println("Updated firmware....");
+    }
+    //ESPhttpUpdate.update("github.com", 80, "/squix78/esp8266-ci-ota/releases/download/0.0.1/firmware.elf");
 
 }

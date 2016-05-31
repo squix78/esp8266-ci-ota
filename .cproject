@@ -28,6 +28,7 @@
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/cores/esp8266/libb64"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/cores/esp8266/spiffs"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/cores/esp8266/umm_malloc"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/Wire"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/ESP8266WiFi/src"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/ESP8266WiFi/src/include"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/DNSServer/src"/>
@@ -56,6 +57,7 @@
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/cores/esp8266/libb64"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/cores/esp8266/spiffs"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/cores/esp8266/umm_malloc"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/Wire"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/ESP8266WiFi/src"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/ESP8266WiFi/src/include"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/DNSServer/src"/>
@@ -84,6 +86,7 @@
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/cores/esp8266/libb64"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/cores/esp8266/spiffs"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/cores/esp8266/umm_malloc"/>
+									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/Wire"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/ESP8266WiFi/src"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/ESP8266WiFi/src/include"/>
 									<listOptionValue builtIn="false" value="${HOME}/.platformio/packages/framework-arduinoespressif/libraries/DNSServer/src"/>

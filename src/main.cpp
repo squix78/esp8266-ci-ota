@@ -10,11 +10,14 @@
 
 #include <ESP8266HTTPClient.h>
 #include "ESP8266httpUpdate.h"
+#include <SSD1306.h>
+#include "SSD1306Ui.h"
 
 const char TEST_PROGMEM[] PROGMEM = {
   0x00, 0xFC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x1F, 0x00, 0x00, 0x04, 0x00
-}; 
+};
 
+SSD1306   display(0x3c, D3, D4);
 String firmwareVersion = "0.0.5";
 ESP8266WiFiMulti WiFiMulti;
 
@@ -33,6 +36,10 @@ void setup() {
     //or use this for auto generated name ESP + ChipID
     //wifiManager.autoConnect();
 
+    display.init();
+    display.flipScreenVertically();
+    display.clear();
+    display.setFont(ArialMT_Plain_10);
 
     //if you get here you have connected to the WiFi
     Serial.println("connected...yeey :)");

@@ -1,3 +1,4 @@
+#include <Wire.h>
 #include <ESP8266WiFi.h>          //https://github.com/esp8266/Arduino
 //needed for library
 #include <DNSServer.h>
@@ -8,9 +9,14 @@
 #include <ESP8266WiFiMulti.h>
 
 #include <ESP8266HTTPClient.h>
-#include <ESP8266httpUpdate.h>
+#include "ESP8266httpUpdate.h"
 
-String firmwareVersion = "0.0.6";
+const char TEST_PROGMEM[] PROGMEM = {
+  0x00, 0xFC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x1F, 0x00, 0x00, 0x04, 0x00
+}; 
+
+String firmwareVersion = "0.0.5";
+ESP8266WiFiMulti WiFiMulti;
 
 void setup() {
 
@@ -23,13 +29,6 @@ void setup() {
     //reset saved settings
     //wifiManager.resetSettings();
 
-    //set custom ip for portal
-    //wifiManager.setAPConfig(IPAddress(10,0,1,1), IPAddress(10,0,1,1), IPAddress(255,255,255,0));
-
-    //fetches ssid and pass from eeprom and tries to connect
-    //if it does not connect it starts an access point with the specified name
-    //here  "AutoConnectAP"
-    //and goes into a blocking loop awaiting configuration
     wifiManager.autoConnect("AutoConnectAP");
     //or use this for auto generated name ESP + ChipID
     //wifiManager.autoConnect();
@@ -37,9 +36,6 @@ void setup() {
 
     //if you get here you have connected to the WiFi
     Serial.println("connected...yeey :)");
-    Serial.println("Now downloading artefact...");
-
-    Serial.println("Downloaded new version....");
     pinMode(0, INPUT);
     pinMode(2, INPUT);
 }
@@ -50,8 +46,29 @@ void loop() {
     if (result0 == LOW) {
       Serial.println("Current firmware: " + firmwareVersion);
       Serial.println("Going to update firmware...");
-      ESPhttpUpdate.update("github.com", 80, "/squix78/esp8266-ci-ota/releases/download/0.0.5/firmware.bin");
-      Serial.println("Updated firmware....");
-    }
+      if((WiFiMulti.run() == WL_CONNECTED)) {
+
+//          Serial.println("Update SPIFFS...");
+//          t_httpUpdate_return ret = ESPhttpUpdate.updateSpiffs("https://github.com/squix78/esp8266-ci-ota/releases/download/0.0.6/firmware.bin");
+//          if(ret == HTTP_UPDATE_OK) {
+              Serial.println("Update sketch...");
+              t_httpUpdate_return ret = ESPhttpUpdate.update("http://www.squix.org/blog/firmware2.php");
+
+              switch(ret) {
+                  case HTTP_UPDATE_FAILED:
+                      Serial.printf("HTTP_UPDATE_FAILD Error (%d): %s", ESPhttpUpdate.getLastError(), ESPhttpUpdate.getLastErrorString().c_str());
+                      break;
+
+                  case HTTP_UPDATE_NO_UPDATES:
+                      Serial.println("HTTP_UPDATE_NO_UPDATES");
+                      break;
+
+                  case HTTP_UPDATE_OK:
+                      Serial.println("HTTP_UPDATE_OK");
+                      break;
+              }
+          }
+      }
+//    }
 
 }

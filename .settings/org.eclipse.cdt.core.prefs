@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+environment/project/0.910961921/PATH/delimiter=\:
+environment/project/0.910961921/PATH/operation=replace
+environment/project/0.910961921/PATH/value=/opt/local/bin\:/opt/local/sbin\:/usr/local/sbin\:/usr/local/bin\:/usr/local/sbin\:/opt/local/bin\:/opt/local/sbin\:/Applications/KindleGen_Mac_i386_v2_9/\:/usr/local/share/npm/bin\:/usr/local/bin\:/usr/bin\:/bin\:/usr/sbin\:/sbin\:/opt/X11/bin
+environment/project/0.910961921/append=true
+environment/project/0.910961921/appendContributed=true

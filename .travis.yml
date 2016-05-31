@@ -9,7 +9,7 @@ env:
 - PLATFORMIO_CI_SRC=src/main.cpp
 install:
 - pip install -U platformio
-- platformio lib install 567
+- platformio lib install 567,562
 script:
 - mkdir /tmp/build
 - platformio ci --build-dir="/tmp/build" --keep-build-dir --board=nodemcuv2

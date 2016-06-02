@@ -10,14 +10,8 @@
 
 #include <ESP8266HTTPClient.h>
 #include "ESP8266httpUpdate.h"
-#include <SSD1306.h>
-#include "SSD1306Ui.h"
+#include "version.h"
 
-const char TEST_PROGMEM[] PROGMEM = {
-  0x00, 0xFC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x1F, 0x00, 0x00, 0x04, 0x00
-};
-
-SSD1306   display(0x3c, D3, D4);
 String firmwareVersion = "0.0.5";
 ESP8266WiFiMulti WiFiMulti;
 
@@ -35,16 +29,7 @@ void setup() {
     wifiManager.autoConnect("AutoConnectAP");
     //or use this for auto generated name ESP + ChipID
     //wifiManager.autoConnect();
-
-    display.init();
-    display.flipScreenVertically();
-    display.clear();
-    display.setFont(ArialMT_Plain_10);
-
-    //if you get here you have connected to the WiFi
-    Serial.println("connected...yeey :)");
-    pinMode(0, INPUT);
-    pinMode(2, INPUT);
+    Serial.println("Started..");
 }
 
 void loop() {
@@ -52,6 +37,7 @@ void loop() {
     int result0 = digitalRead(0);
     if (result0 == LOW) {
       Serial.println("Current firmware: " + firmwareVersion);
+      Serial.println("Commit: " + String(BUILD_COMMIT));
       Serial.println("Going to update firmware...");
       if((WiFiMulti.run() == WL_CONNECTED)) {
 
@@ -59,7 +45,7 @@ void loop() {
 //          t_httpUpdate_return ret = ESPhttpUpdate.updateSpiffs("https://github.com/squix78/esp8266-ci-ota/releases/download/0.0.6/firmware.bin");
 //          if(ret == HTTP_UPDATE_OK) {
               Serial.println("Update sketch...");
-              t_httpUpdate_return ret = ESPhttpUpdate.update("http://www.squix.org/blog/firmware2.php");
+              t_httpUpdate_return ret = ESPhttpUpdate.update("http://www.squix.org/blog/firmware.php");
 
               switch(ret) {
                   case HTTP_UPDATE_FAILED:

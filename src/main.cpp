@@ -10,10 +10,10 @@
 
 #include <ESP8266HTTPClient.h>
 #include "ESP8266httpUpdate.h"
+#include "version.h"
 
 
 
-String firmwareVersion = "0.0.5";
 String buildTimeStamp = String(BUILD_TIMESTAMP);
 
 ESP8266WiFiMulti WiFiMulti;
@@ -33,7 +33,7 @@ void setup() {
     //or use this for auto generated name ESP + ChipID
     //wifiManager.autoConnect();
     Serial.println("Started..");
-
+    Serial.println("BUILD_TAG: "+ String(BUILD_TAG));
     Serial.println("Unix time stamp: " + buildTimeStamp);
 }
 
@@ -41,14 +41,10 @@ void loop() {
     // press nodemcu's flash button
     int result0 = digitalRead(0);
     if (result0 == LOW) {
-      Serial.println("Current firmware: " + firmwareVersion);
       Serial.println("Unix time stamp: " + buildTimeStamp);
       Serial.println("Going to update firmware...");
-      if((WiFiMulti.run() == WL_CONNECTED)) {
+      if((WiFiMulti.run() == WL_CONNECTED) && BUILD_TAG != "0.0.0") {
 
-//          Serial.println("Update SPIFFS...");
-//          t_httpUpdate_return ret = ESPhttpUpdate.updateSpiffs("https://github.com/squix78/esp8266-ci-ota/releases/download/0.0.6/firmware.bin");
-//          if(ret == HTTP_UPDATE_OK) {
               Serial.println("Update sketch...");
               t_httpUpdate_return ret = ESPhttpUpdate.update("http://www.squix.org/blog/firmware.php?timestamp=" + String(BUILD_TIMESTAMP));
 

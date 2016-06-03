@@ -14,7 +14,6 @@ install:
 - export PLATFORMIO_BUILD_FLAGS="-D BUILD_TIMESTAMP="`date +%s`
 - echo "${TRAVIS_TAG}"
 - echo "const char * BUILD_TAG = \"${TRAVIS_TAG}\";" > src/version.h
-- cat src/version.h
 script:
 - mkdir /tmp/build
 - platformio ci --build-dir="/tmp/build" --keep-build-dir --board=nodemcuv2

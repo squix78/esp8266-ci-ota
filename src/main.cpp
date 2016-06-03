@@ -10,6 +10,8 @@
 
 #include "version.h"
 
+#define CHECK_INTERVAL 60
+
 ESP8266WiFiMulti WiFiMulti;
 Ticker updateCheck;
 boolean doUpdateCheck = false;
@@ -36,7 +38,7 @@ void setup() {
     Serial.println("BUILD_TAG: "+ String(BUILD_TAG));
 
     // don't wanna miss a thing... Check every 60 seconds
-    updateCheck.attach(60, enableUpdateCheck);
+    updateCheck.attach(CHECK_INTERVAL, enableUpdateCheck);
 }
 
 void loop() {

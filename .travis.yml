@@ -10,9 +10,9 @@ env:
 install:
 - pip install -U platformio
 - platformio lib install 567 562
+- export PLATFORMIO_BUILD_FLAGS="-D BUILD_TIMESTAMP="`date +%s`
 script:
 - mkdir /tmp/build
-- echo 'const char *BUILD_COMMIT = "$TRAVIS_COMMIT"' > /tmp/build/.pioenvs/nodemcuv2/version.h
 - platformio ci --build-dir="/tmp/build" --keep-build-dir --board=nodemcuv2
 
 deploy:

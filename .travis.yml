@@ -12,7 +12,8 @@ install:
 - pip install -U platformio
 - platformio lib install 567 562
 - export PLATFORMIO_BUILD_FLAGS="-D BUILD_TIMESTAMP="`date +%s`
-# - echo "const char * BUILD_TAG = '$TRAVIS_TAG'" > src/version.h;
+- echo "const char * BUILD_TAG = '$TRAVIS_TAG'" > src/version.h;
+- cat src/version.h
 script:
 - mkdir /tmp/build
 - platformio ci --build-dir="/tmp/build" --keep-build-dir --board=nodemcuv2

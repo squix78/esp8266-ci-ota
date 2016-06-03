@@ -13,7 +13,7 @@ install:
 - platformio lib install 567 562
 - export PLATFORMIO_BUILD_FLAGS="-D BUILD_TIMESTAMP="`date +%s`
 - echo "${TRAVIS_TAG}"
-- echo "const char * BUILD_TAG = '${TRAVIS_TAG}';" > src/version.h
+- echo "const char * BUILD_TAG = \"${TRAVIS_TAG}\";" > src/version.h
 - cat src/version.h
 script:
 - mkdir /tmp/build

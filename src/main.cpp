@@ -43,7 +43,7 @@ void loop() {
     if (result0 == LOW) {
       Serial.println("Unix time stamp: " + buildTimeStamp);
       Serial.println("Going to update firmware...");
-      if((WiFiMulti.run() == WL_CONNECTED) && BUILD_TAG != "0.0.0") {
+      if((WiFiMulti.run() == WL_CONNECTED)) {
 
               Serial.println("Update sketch...");
               t_httpUpdate_return ret = ESPhttpUpdate.update("http://www.squix.org/blog/firmware.php?timestamp=" + String(BUILD_TIMESTAMP));

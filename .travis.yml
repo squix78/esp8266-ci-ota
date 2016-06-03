@@ -6,8 +6,8 @@ cache:
   directories:
   - ~/.platformio
 env:
-- PLATFORMIO_CI_SRC=src/main.cpp
-- PLATFORMIO_CI_SRC=src/version.h
+- PLATFORMIO_CI_SRC=src/
+
 install:
 - pip install -U platformio
 - platformio lib install 567 562

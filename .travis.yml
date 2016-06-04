@@ -14,13 +14,13 @@ install:
 - echo "${TRAVIS_TAG}"
 - echo "const char * BUILD_TAG = \"${TRAVIS_TAG}\";" > src/version.h
 script:
-- platformio run --keep-build-dir --board=nodemcuv2
+- platformio run --board=nodemcuv2
 
 deploy:
   on:
     repo: squix78/esp8266-ci-ota
     all_branches: true
-    condition: $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$
+    #condition: $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$
 
   skip_cleanup: true
   provider: releases

@@ -8,13 +8,16 @@
 #include <ESP8266httpUpdate.h>
 #include <Ticker.h>
 
-#include "version.h"
 
 #define CHECK_INTERVAL 60
+// Stringifying the BUILD_TAG parameter
+#define TEXTIFY(A) #A
+#define ESCAPEQUOTE(A) TEXTIFY(A)
 
+String buildTag = ESCAPEQUOTE(BUILD_TAG);
 ESP8266WiFiMulti WiFiMulti;
 Ticker updateCheck;
-boolean doUpdateCheck = false;
+boolean doUpdateCheck = true;
 
 void enableUpdateCheck() {
   doUpdateCheck = true;
@@ -35,7 +38,7 @@ void setup() {
     //or use this for auto generated name ESP + ChipID
     //wifiManager.autoConnect();
     Serial.println("Started..");
-    Serial.println("BUILD_TAG: "+ String(BUILD_TAG));
+    Serial.println("BUILD_TAG: "+ buildTag);
 
     // don't wanna miss a thing... Check every 60 seconds
     updateCheck.attach(CHECK_INTERVAL, enableUpdateCheck);
@@ -48,8 +51,8 @@ void loop() {
       Serial.println("Going to update firmware...");
       if((WiFiMulti.run() == WL_CONNECTED)) {
 
-              Serial.println("Update sketch...");
-              t_httpUpdate_return ret = ESPhttpUpdate.update("http://www.squix.org/blog/firmware.php?tag=" + String(BUILD_TAG));
+              Serial.println("Checking for Update. Current version: " + buildTag);
+              t_httpUpdate_return ret = ESPhttpUpdate.update("http://www.squix.org/blog/firmware.php?tag=" + buildTag);
 
               switch(ret) {
                   case HTTP_UPDATE_FAILED:

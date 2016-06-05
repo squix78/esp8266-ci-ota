@@ -7,14 +7,14 @@ cache:
   - ~/.platformio
 env:
 - PLATFORMIO_CI_SRC=src/
-
+ 
 install:
 - pip install -U platformio
 - platformio lib install 567 562
 - echo "${TRAVIS_TAG}"
 - echo "const char * BUILD_TAG = \"${TRAVIS_TAG}\";" > src/version.h
 script:
-- platformio run --board=nodemcuv2
+- platformio run
 
 deploy:
   on:

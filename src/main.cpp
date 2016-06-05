@@ -10,9 +10,11 @@
 
 
 #define CHECK_INTERVAL 60
+// Stringifying the BUILD_TAG parameter
 #define TEXTIFY(A) #A
+#define ESCAPEQUOTE(A) TEXTIFY(A)
 
-String buildTag = TEXTIFY(String(BUILD_TAG));
+String buildTag = ESCAPEQUOTE(BUILD_TAG);
 ESP8266WiFiMulti WiFiMulti;
 Ticker updateCheck;
 boolean doUpdateCheck = false;

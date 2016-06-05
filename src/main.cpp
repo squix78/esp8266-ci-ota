@@ -17,7 +17,7 @@
 String buildTag = ESCAPEQUOTE(BUILD_TAG);
 ESP8266WiFiMulti WiFiMulti;
 Ticker updateCheck;
-boolean doUpdateCheck = false;
+boolean doUpdateCheck = true;
 
 void enableUpdateCheck() {
   doUpdateCheck = true;
@@ -51,7 +51,7 @@ void loop() {
       Serial.println("Going to update firmware...");
       if((WiFiMulti.run() == WL_CONNECTED)) {
 
-              Serial.println("Update sketch...");
+              Serial.println("Checking for Update. Current version: " + buildTag);
               t_httpUpdate_return ret = ESPhttpUpdate.update("http://www.squix.org/blog/firmware.php?tag=" + buildTag);
 
               switch(ret) {
